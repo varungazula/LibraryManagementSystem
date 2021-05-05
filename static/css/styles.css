@@ -1,0 +1,25 @@
+
+::-webkit-scrollbar {
+    display: none;
+} 
+
+body{
+    background-color:whitesmoke;
+}
+
+.fa-trash{
+    color: red
+}
+
+.tabs.is-toggle li.is-active a {
+    background-color: black;
+    border-color: black;
+    color: #fff;
+    z-index: 1;
+}
+
+
+.notification.is-danger{
+    background-color: red;
+    color:white;
+}

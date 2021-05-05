@@ -1,0 +1,65 @@
+<div class="modal-content">
+<form class="form" action="/transactions"  method="POST">
+    <button class="button is-large modal-close btnclose" ></button>
+    <div class="field">
+        <label for="name" style="color: white;" class="label">Transaction ID</label>
+        <div class="control has-icons-left">
+            <input type="text" id="transaction" name="name"  class="input" placeholder="Enter Transaction ID" required>
+            <span class="icon is-small is-left">
+                <i class="fas fa-id-badge"></i>
+            </span>
+        </div>    
+    </div>
+    <div class="field">
+        <label for="pnum" style="color: white;"  class="label" >Select Member</label>
+        <div class="select is-multiple">
+            <select name="" class="" id="mname">
+                {% for data in data2 %}
+                <option value="{{data[0], data[1]}}">{{data[0],data[1]}}</option>
+                {% endfor %}
+            </select>
+        </div>        
+    </div>
+    <div class="field">
+        <label for="email" style="color: white;" class="label">Book Name</label>
+        <div class="select is-multiple has-icons-left">
+            <select name="" class="" id="bname" >
+                {% for data in data1 %}
+                <option value="{{data[0],data[1]}}">{{data[0],data[1]}}</option>
+                {% endfor %}
+            </select>
+        </div>    
+    </div>
+    <div class="field">
+        <label for="pnum" style="color: white;"  class="label" >Transaction type</label>
+        <div class="select is-multiple">
+            <select name="" class="" id="type1">
+                <option value="Rent">Rent</option>
+                
+            </select>
+        </div>        
+    </div>
+    <div class="field">
+        <label for="id" style="color: white;" class="label">Select Date</label>
+        <div class="control">
+            <input type="date" id="date" name='id'  class="input" placeholder="ENTR ID" required>
+        </div>    
+    </div>
+    <div class="field is-grouped">
+        <div class="control">
+          <button type="submit" class="button is-link addtransaction" value="Submit">Submit</button>
+        </div>
+        <div class="control">
+          <button class="button is-link is-light btnclosetransaction">Cancel</button>
+        </div>
+      </div>
+    </form>
+</div>
+<script src="https://kit.fontawesome.com/6d2085989f.js" crossorigin="anonymous"></script>
+<script src = "https://code.jquery.com/jquery-3.5.1.js"></script>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+<script src="https://cdn.datatables.net/1.10.24/js/jquery.dataTables.min.js"></script> 
+<script src="//cdn.jsdelivr.net/npm/sweetalert2@10"></script>
+<!-- <script src="{{url_for('static', filename='script/transactions.js')}}"></script> -->
+
+<script src="{{url_for('static', filename='script/response.js')}}"></script>

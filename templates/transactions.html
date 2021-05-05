@@ -1,0 +1,72 @@
+{% extends "base.html" %}
+{% block content %}
+    <div class="container is-fluid">
+        {% with messages = get_flashed_messages() %}
+            {% if messages %}
+                {% for message in messages %}
+                    {% if message == "ID Already Exists. Please Use another ID." %}
+                        <div class="notification is-danger " role="alert">
+                            <button type="button" class="delete deletenotification" data-dismiss="alert" aria-label="Close">Close</button>
+                            <bold>{{message}}</bold>
+                        </div>
+                        {% elif message == "User has Debt of 500 or more hence cannot rent books" %}
+                        <div class="notification is-danger " role="alert">
+                            <button type="button" class="delete deletenotification" data-dismiss="alert" aria-label="Close">Close</button>
+                            {{message}}
+                        </div>
+                    {% endif %}
+                {% endfor %}
+            {% endif %}
+        {% endwith %}
+        <a href="/"><button class="button is-dark">Home</button></a>
+        <button class="button is-dark " id="modalbtntransaction" data-target="#modal"> Add new Transaction</button>
+        <br><br>
+    <table class="table is-hoverable is-fullwidth" id="example">
+        <thead>
+            <tr>
+                <th>ID</th>
+                <th>Member</th>
+                <th>Book</th>
+                <th>Status</th>
+                <th>Date</th>
+                <th>Actions</th>
+
+            </tr>
+        </thead>
+        <tbody>
+            {% for row in data2 %}
+            <tr>
+                <th>{{row[0]}}</th>
+                <th>{{row[1]}}</th>
+                <th>{{row[2]}}</th>
+                <th>{{row[3]}}</th>
+                <th>{{row[4]}}</th>
+                <th>
+                    {% if row[3]=="return"  %}
+                    <a class="deletedtransaction" id="{{row[0]}}" type="submit" > <i class="fas fa-trash fa-lg"></i></a>
+            {% else %}
+            <a class="deletedtransaction" id="{{row[0]}}" type="submit" > <i class="fas fa-trash fa-lg"></i></a>
+
+                    <a class="return , {{row[0]}} , {{row[1]}} , {{row[2]}} , {{row[3]}}" > Issue Return</a>
+                    {% endif %}
+            
+                </th>
+                </tr>
+            {% endfor %}
+            
+        </tbody>
+    </table>
+
+
+
+    <div class="modal" id="modal">
+        <div class="modal-background"></div>
+        <div class="modal-content">
+
+        </div>
+
+    </div>
+</div>
+</div>
+
+{% endblock %}

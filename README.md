@@ -26,6 +26,7 @@ ScreenShots
 
 <img src = "Images/Home.JPG">
 <img src = "Images/Books.JPG">
+<img src = "Images/InsertBooks.JPG">
 <img src = "Images/Members.JPG">
 <img src = "Images/AddNewMember.JPG">
 <img src = "Images/deletemember.JPG">

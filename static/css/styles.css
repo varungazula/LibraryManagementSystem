@@ -1,13 +1,12 @@
-
 ::-webkit-scrollbar {
     display: none;
-} 
-
-body{
-    background-color:whitesmoke;
 }
 
-.fa-trash{
+body {
+    background-color: whitesmoke;
+}
+
+.fa-trash {
     color: red
 }
 
@@ -18,8 +17,7 @@ body{
     z-index: 1;
 }
 
-
-.notification.is-danger{
+.notification.is-danger {
     background-color: red;
-    color:white;
+    color: white;
 }

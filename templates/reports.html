@@ -1,35 +1,33 @@
-
-{% extends "base.html" %}
-{% block content %}
+ {% extends "base.html" %} {% block content %}
 
 <section class="hero ">
     <div class="tabs is-centered  is-toggle">
         <ul>
-          <li class="tab is-active" onclick="openTab(event,'Books')">
-            <a>
-              <span class="icon is-small"><i class="fas fa-book" aria-hidden="true"></i></span>
-              <span >Books Report</span>
-            </a>
-          </li>
-          <li class="tab" onclick="openTab(event,'Members')">
-            <a>
-              <span class="icon is-small" ><i class="fas fa-user-friends" aria-hidden="true"></i></span>
-              <span>Members Report</span>
-            </a>
-          </li>
+            <li class="tab is-active" onclick="openTab(event,'Books')">
+                <a>
+                    <span class="icon is-small"><i class="fas fa-book" aria-hidden="true"></i></span>
+                    <span>Books Report</span>
+                </a>
+            </li>
+            <li class="tab" onclick="openTab(event,'Members')">
+                <a>
+                    <span class="icon is-small"><i class="fas fa-user-friends" aria-hidden="true"></i></span>
+                    <span>Members Report</span>
+                </a>
+            </li>
         </ul>
-    </div>      
-    </section>
-    <div class="container section">
-      <!-- <button class="button download is-dark" onclick="download('Books')">Download</button> -->
-    <div id="Books" class="content-tab is-fullwidth" >
-     <table class="table is-hoverable is-fullwidth" id="example">
+    </div>
+</section>
+<div class="container section">
+    <!-- <button class="button download is-dark" onclick="download('Books')">Download</button> -->
+    <div id="Books" class="content-tab is-fullwidth">
+        <table class="table is-hoverable is-fullwidth" id="example">
             <thead>
                 <tr>
                     <th>ISBN</th>
                     <th>Name</th>
-                    <th>Total Quantity</th>  
-                    <th>Available</th>  
+                    <th>Total Quantity</th>
+                    <th>Available</th>
                     <th>On Rent</th>
 
                 </tr>
@@ -45,19 +43,19 @@
 
                 </tr>
                 {% endfor %}
-                
+
             </tbody>
         </table>
-        </div>
-        <div id="Members" class="content-tab" style="display:none">
-             <table class="table is-active is-hoverable books is-fullwidth tabcontent" id="example1">
+    </div>
+    <div id="Members" class="content-tab" style="display:none">
+        <table class="table is-active is-hoverable books is-fullwidth tabcontent" id="example1">
             <thead>
                 <tr>
                     <th>ID</th>
                     <th>Name</th>
                     <th>Email</th>
                     <th>Spent</th>
-    
+
                 </tr>
             </thead>
             <tbody>
@@ -69,13 +67,11 @@
                     <th>{{row[3]}}</th>
                 </tr>
                 {% endfor %}
-                
+
             </tbody>
         </table>
-        </div>
-        
     </div>
-    
-{% endblock %}    
 
-        
+</div>
+
+{% endblock %}

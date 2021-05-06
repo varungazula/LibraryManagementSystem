@@ -1,27 +1,18 @@
-{% extends "base.html" %}
-{% block content %}
-    <div class="container is-fluid">
-        {% with messages = get_flashed_messages() %}
-            {% if messages %}
-                {% for message in messages %}
-                    {% if message == "ID Already Exists. Please Use another ID." %}
-                        <div class="notification is-danger " role="alert">
-                            <button type="button" class="delete deletenotification" data-dismiss="alert" aria-label="Close">Close</button>
-                            {{message}}
-                        </div>
-                        {% elif message == "User has existing Transactions, please delete them and try again." %}
-                        <div class="notification is-danger " role="alert">
-                            <button type="button" class="delete deletenotification" data-dismiss="alert" aria-label="Close">Close</button>
-                            {{message}}
-                        </div>
-                    {% endif %}
-                {% endfor %}
-            {% endif %}
-        {% endwith %}
+{% extends "base.html" %} {% block content %}
+<div class="container is-fluid">
+    {% with messages = get_flashed_messages() %} {% if messages %} {% for message in messages %} {% if message == "ID Already Exists. Please Use another ID." %}
+    <div class="notification is-danger " role="alert">
+        <button type="button" class="delete deletenotification" data-dismiss="alert" aria-label="Close">Close</button> {{message}}
+    </div>
+    {% elif message == "User has existing Transactions, please delete them and try again." %}
+    <div class="notification is-danger " role="alert">
+        <button type="button" class="delete deletenotification" data-dismiss="alert" aria-label="Close">Close</button> {{message}}
+    </div>
+    {% endif %} {% endfor %} {% endif %} {% endwith %}
 
-        <a href="/"><button class="button is-dark">Home</button></a>
-        <button class="button is-dark " id="modalbtnmembers" data-target="#modal"> Add new User</button>
-        <br><br>
+    <a href="/"><button class="button is-dark">Home</button></a>
+    <button class="button is-dark " id="modalbtnmembers" data-target="#modal"> Add new User</button>
+    <br><br>
     <table class="table is-hoverable is-fullwidth" id="example">
         <thead>
             <tr>
@@ -45,13 +36,13 @@
                 <th>{{row[4]}}</th>
                 <th>{{row[5]}}</th>
                 <th>
-                    <a class="editmember ,{{row[0]}} ,{{row[1]}} ,{{row[2]}} ,{{row[3]}}" > <i class="fas fa-edit fa-lg"></i></a>
+                    <a class="editmember ,{{row[0]}} ,{{row[1]}} ,{{row[2]}} ,{{row[3]}}"> <i class="fas fa-edit fa-lg"></i></a>
 
-                    <a class="deletemembers" id="{{row[0]}}" type="submit" ><i class="fas fa-trash fa-lg"></i></a>
+                    <a class="deletemembers" id="{{row[0]}}" type="submit"><i class="fas fa-trash fa-lg"></i></a>
                 </th>
-                </tr>
+            </tr>
             {% endfor %}
-            
+
         </tbody>
     </table>
 
@@ -60,52 +51,52 @@
     <div class="modal" id="modal">
         <div class="modal-background"></div>
         <div class="modal-content">
-            <form  method="POST">
-            <button class="button is-large modal-close btnclosemembers" ></button>
-            <div class="field">
-                <label for="name" style="color: white;" class="label">Name</label>
-                <div class="control has-icons-left">
-                    <input type="text" id="textname" name="name"  class="input" placeholder="Enter Name" required>
-                    <span class="icon is-small is-left">
+            <form method="POST">
+                <button class="button is-large modal-close btnclosemembers"></button>
+                <div class="field">
+                    <label for="name" style="color: white;" class="label">Name</label>
+                    <div class="control has-icons-left">
+                        <input type="text" id="textname" name="name" class="input" placeholder="Enter Name" required>
+                        <span class="icon is-small is-left">
                         <i class="fas fa-user"></i>
                       </span>
-                </div>    
-            </div>
-            <div class="field">
-                <label for="email" style="color: white;" class="label">Email</label>
-                <div class="control has-icons-left">
-                    <input type="email" id="textmail"  name="em"  class="input" placeholder="hello@" required >
-                    <span class="icon is-small is-left">
+                    </div>
+                </div>
+                <div class="field">
+                    <label for="email" style="color: white;" class="label">Email</label>
+                    <div class="control has-icons-left">
+                        <input type="email" id="textmail" name="em" class="input" placeholder="hello@" required>
+                        <span class="icon is-small is-left">
                         <i class="fas fa-envelope"></i>
                       </span>
-                </div>    
-            </div>
-            <div class="field">
-                <label for="pnum" style="color: white;"  class="label" >Phone Number</label>
-                <div class="control has-icons-left">
-                    <input type="tel" id="pnum" maxlength="10"  pattern="[1-9]{1}[0-9]{9}"  class="input" name='pnum' placeholder="Enter Phone Number" required>
-                    <span class="icon is-small is-left">
+                    </div>
+                </div>
+                <div class="field">
+                    <label for="pnum" style="color: white;" class="label">Phone Number</label>
+                    <div class="control has-icons-left">
+                        <input type="tel" id="pnum" maxlength="10" pattern="[1-9]{1}[0-9]{9}" class="input" name='pnum' placeholder="Enter Phone Number" required>
+                        <span class="icon is-small is-left">
                         <i class="fas fa-phone"></i>
                     </span>
-                </div>    
-            </div>
-            <div class="field">
-                <label for="id" style="color: white;" class="label">ID</label>
-                <div class="control has-icons-left">
-                    <input type="number" id="id"  name='id'  class="input" placeholder="Enter ID" required>
-                    <span class="icon is-small is-left">
+                    </div>
+                </div>
+                <div class="field">
+                    <label for="id" style="color: white;" class="label">ID</label>
+                    <div class="control has-icons-left">
+                        <input type="number" id="id" name='id' class="input" placeholder="Enter ID" required>
+                        <span class="icon is-small is-left">
                         <i class="fas fa-id-badge"></i>
                     </span>
-                </div>    
-            </div>
-            <div class="field is-grouped">
-                <div class="control">
-                  <button type="submit" class="button is-link addmember" value="Submit">Submit</button>
+                    </div>
                 </div>
-                <div class="control">
-                  <button class="button is-link is-light btnclosemembers">Cancel</button>
+                <div class="field is-grouped">
+                    <div class="control">
+                        <button type="submit" class="button is-link addmember" value="Submit">Submit</button>
+                    </div>
+                    <div class="control">
+                        <button class="button is-link is-light btnclosemembers">Cancel</button>
+                    </div>
                 </div>
-              </div>
             </form>
         </div>
 
@@ -115,51 +106,51 @@
     <div class="modal-background"></div>
     <div class="modal-content">
         <form action="/members" method="POST">
-        <button class="button is-large modal-close btnclosemembers" ></button>
-        <div class="field">
-            <label for="name" style="color: white;" class="label">Name</label>
-            <div class="control has-icons-left">
-                <input type="text" id="textname1" name="name"  class="input" placeholder="Enter Name" required>
-                <span class="icon is-small is-left">
+            <button class="button is-large modal-close btnclosemembers"></button>
+            <div class="field">
+                <label for="name" style="color: white;" class="label">Name</label>
+                <div class="control has-icons-left">
+                    <input type="text" id="textname1" name="name" class="input" placeholder="Enter Name" required>
+                    <span class="icon is-small is-left">
                     <i class="fas fa-user"></i>
                   </span>
-            </div>    
-        </div>
-        <div class="field">
-            <label for="email" style="color: white;" class="label">Email</label>
-            <div class="control has-icons-left">
-                <input type="email" id="textmail1"  name="em"  class="input" placeholder="hello@" required >
-                <span class="icon is-small is-left">
+                </div>
+            </div>
+            <div class="field">
+                <label for="email" style="color: white;" class="label">Email</label>
+                <div class="control has-icons-left">
+                    <input type="email" id="textmail1" name="em" class="input" placeholder="hello@" required>
+                    <span class="icon is-small is-left">
                     <i class="fas fa-envelope"></i>
                   </span>
-            </div>    
-        </div>
-        <div class="field">
-            <label for="pnum" style="color: white;"  class="label" >Phone Number</label>
-            <div class="control has-icons-left">
-                <input type="tel" id="pnum1" maxlength="10"  pattern="[1-9]{1}[0-9]{9}"  class="input" name='pnum' placeholder="Enter Phone Number" required>
-                <span class="icon is-small is-left">
+                </div>
+            </div>
+            <div class="field">
+                <label for="pnum" style="color: white;" class="label">Phone Number</label>
+                <div class="control has-icons-left">
+                    <input type="tel" id="pnum1" maxlength="10" pattern="[1-9]{1}[0-9]{9}" class="input" name='pnum' placeholder="Enter Phone Number" required>
+                    <span class="icon is-small is-left">
                     <i class="fas fa-phone"></i>
                 </span>
-            </div>    
-        </div>
-        <div class="field">
-            <label for="id" style="color: white;" class="label">ID</label>
-            <div class="control has-icons-left">
-                <input type="number" id="id1"  name='id'  class="input" placeholder="Enter ID" required>
-                <span class="icon is-small is-left">
+                </div>
+            </div>
+            <div class="field">
+                <label for="id" style="color: white;" class="label">ID</label>
+                <div class="control has-icons-left">
+                    <input type="number" id="id1" name='id' class="input" placeholder="Enter ID" required>
+                    <span class="icon is-small is-left">
                     <i class="fas fa-id-badge"></i>
                 </span>
-            </div>    
-        </div>
-        <div class="field is-grouped">
-            <div class="control">
-              <button type="submit" class="button is-link btneditmember" value="Submit">Submit</button>
+                </div>
             </div>
-            <div class="control">
-              <button class="button is-link is-light btnclosemembers">Cancel</button>
+            <div class="field is-grouped">
+                <div class="control">
+                    <button type="submit" class="button is-link btneditmember" value="Submit">Submit</button>
+                </div>
+                <div class="control">
+                    <button class="button is-link is-light btnclosemembers">Cancel</button>
+                </div>
             </div>
-          </div>
         </form>
     </div>
 

@@ -1,26 +1,18 @@
-{% extends "base.html" %}
-{% block content %}
-    <div class="container is-fluid">
-        {% with messages = get_flashed_messages() %}
-            {% if messages %}
-                {% for message in messages %}
-                    {% if message == "ID Already Exists. Please Use another ID." %}
-                        <div class="notification is-danger " role="alert">
-                            <button type="button" class="delete deletenotification" data-dismiss="alert" aria-label="Close">Close</button>
-                            <bold>{{message}}</bold>
-                        </div>
-                        {% elif message == "User has Debt of 500 or more hence cannot rent books" %}
-                        <div class="notification is-danger " role="alert">
-                            <button type="button" class="delete deletenotification" data-dismiss="alert" aria-label="Close">Close</button>
-                            {{message}}
-                        </div>
-                    {% endif %}
-                {% endfor %}
-            {% endif %}
-        {% endwith %}
-        <a href="/"><button class="button is-dark">Home</button></a>
-        <button class="button is-dark " id="modalbtntransaction" data-target="#modal"> Add new Transaction</button>
-        <br><br>
+{% extends "base.html" %} {% block content %}
+<div class="container is-fluid">
+    {% with messages = get_flashed_messages() %} {% if messages %} {% for message in messages %} {% if message == "ID Already Exists. Please Use another ID." %}
+    <div class="notification is-danger " role="alert">
+        <button type="button" class="delete deletenotification" data-dismiss="alert" aria-label="Close">Close</button>
+        <bold>{{message}}</bold>
+    </div>
+    {% elif message == "User has Debt of 500 or more hence cannot rent books" %}
+    <div class="notification is-danger " role="alert">
+        <button type="button" class="delete deletenotification" data-dismiss="alert" aria-label="Close">Close</button> {{message}}
+    </div>
+    {% endif %} {% endfor %} {% endif %} {% endwith %}
+    <a href="/"><button class="button is-dark">Home</button></a>
+    <button class="button is-dark " id="modalbtntransaction" data-target="#modal"> Add new Transaction</button>
+    <br><br>
     <table class="table is-hoverable is-fullwidth" id="example">
         <thead>
             <tr>
@@ -42,18 +34,17 @@
                 <th>{{row[3]}}</th>
                 <th>{{row[4]}}</th>
                 <th>
-                    {% if row[3]=="return"  %}
-                    <a class="deletedtransaction" id="{{row[0]}}" type="submit" > <i class="fas fa-trash fa-lg"></i></a>
-            {% else %}
-            <a class="deletedtransaction" id="{{row[0]}}" type="submit" > <i class="fas fa-trash fa-lg"></i></a>
+                    {% if row[3]=="return" %}
+                    <a class="deletedtransaction" id="{{row[0]}}" type="submit"> <i class="fas fa-trash fa-lg"></i></a>
+                    {% else %}
+                    <a class="deletedtransaction" id="{{row[0]}}" type="submit"> <i class="fas fa-trash fa-lg"></i></a>
 
-                    <a class="return , {{row[0]}} , {{row[1]}} , {{row[2]}} , {{row[3]}}" > Issue Return</a>
-                    {% endif %}
-            
+                    <a class="return , {{row[0]}} , {{row[1]}} , {{row[2]}} , {{row[3]}}"> Issue Return</a> {% endif %}
+
                 </th>
-                </tr>
+            </tr>
             {% endfor %}
-            
+
         </tbody>
     </table>
 

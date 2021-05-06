@@ -16,28 +16,30 @@ def helloWorld():
 
 @app.route('/books', methods=["POST", 'GET'])
 def books():
+
     mycursor = mydb.cursor()
     mycursor.execute("SELECT * from books")
     data = mycursor.fetchall()
     title = "Books"
     links = ['members','transactions', 'reports']
-    return render_template("books.html",links=links,title=title,data=data , datas="heye")
+    return render_template("books.html",links=links,title=title,data=data)
 
 @app.route('/books_insert', methods=['POST', 'GET'])
 def books_insert():
     if request.method=='POST':
         mycursor = mydb.cursor(buffered=True)
-        for page_no in range(1,2):
-            results = requests.get("https://frappe.io/api/method/frappe-library?page={}".format(page_no))
-            if results.status_code != 200:
-                print("Error")
-            for book in results.json()["message"]:
-                mycursor.execute('''Select * from books where isbn = %s''',(book['isbn'],))
-                if mycursor.rowcount==1:
-                    print("exists")
-                else:
-                    mycursor.execute('''insert into books values(%s, %s, %s, %s, %s, %s, DEFAULT)''',(book['isbn'],book['title'], book['authors'], book['publisher'], book['  num_pages'], book['average_rating']))
-                    mydb.commit()
+        page_no = request.form.get("starting")
+        results = requests.get("https://frappe.io/api/method/frappe-library?page={}".format(int(page_no)))
+        if results.status_code != 200:
+            print("Error")
+        flash("Thanks For Waiting !!!")
+        for book in results.json()["message"]:
+            mycursor.execute('''Select * from books where isbn = %s''',(book['isbn'],))
+            if mycursor.rowcount==1:
+                print("exists")
+            else:
+                mycursor.execute('''insert into books values(%s, %s, %s, %s, %s, %s, DEFAULT)''',(book['isbn'],book['title'], book['authors'], book['publisher'], book['  num_pages'], book['average_rating']))
+                mydb.commit()
     return ("done")
 
 @app.route('/books_delete', methods=["POST", "GET"])

@@ -2,6 +2,7 @@ I have created a simple Library management system which is user friendly and inc
 
 User can view the list of books available in the library along with the default stock of 50 which can be edited at any time.
 It displays the book title, author, publisher, pages of the book, avg rating and stock along with actions to edit or delete books. 
+User can also insert books by clicking on the "Insert" button and providing the page number.
 
 User can add new members using the "Members" page
 They can easily edit the user information if any change is required. 

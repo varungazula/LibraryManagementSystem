@@ -16,6 +16,7 @@ def helloWorld():
 
 @app.route('/books', methods=["POST", 'GET'])
 def books():
+    mydb = mysql.connect(host= "us-cdbr-east-03.cleardb.com", user= "b922d4a2de1e6a", password="3ae708bb", database= "heroku_e63d91263a358b9")
 
     mycursor = mydb.cursor()
     mycursor.execute("SELECT * from books")
@@ -27,6 +28,7 @@ def books():
 @app.route('/books_insert', methods=['POST', 'GET'])
 def books_insert():
     if request.method=='POST':
+        mydb = mysql.connect(host= "us-cdbr-east-03.cleardb.com", user= "b922d4a2de1e6a", password="3ae708bb", database= "heroku_e63d91263a358b9")
         mycursor = mydb.cursor(buffered=True)
         page_no = request.form.get("starting")
         results = requests.get("https://frappe.io/api/method/frappe-library?page={}".format(int(page_no)))
@@ -45,6 +47,7 @@ def books_insert():
 @app.route('/books_delete', methods=["POST", "GET"])
 def books_delete():
     if request.method == 'POST':
+        mydb = mysql.connect(host= "us-cdbr-east-03.cleardb.com", user= "b922d4a2de1e6a", password="3ae708bb", database= "heroku_e63d91263a358b9")
         id = request.form.get('string')
         mycursor = mydb.cursor()
         mycursor.execute('''delete from books where isbn = %s''',(id,))
@@ -54,6 +57,7 @@ def books_delete():
 @app.route('/books_update', methods=["POST", "GET"])
 def books_update():
     if request.method == "POST":
+        mydb = mysql.connect(host= "us-cdbr-east-03.cleardb.com", user= "b922d4a2de1e6a", password="3ae708bb", database= "heroku_e63d91263a358b9")
         isbn = request.form.get('isbn')
         stock = request.form.get("stock")
         mycursor = mydb.cursor()
@@ -67,6 +71,7 @@ def books_update():
 @app.route('/get_data', methods = ["POST", "GET"])
 def get_data():
     if request.method == "POST":
+        mydb = mysql.connect(host= "us-cdbr-east-03.cleardb.com", user= "b922d4a2de1e6a", password="3ae708bb", database= "heroku_e63d91263a358b9")
         mycursor = mydb.cursor()
         mycursor.execute('''Select isbn,title from books where stock>0''')
         data1 = mycursor.fetchall()
@@ -78,6 +83,7 @@ def get_data():
 @app.route('/transactionadd', methods = ["POST", "GET"])
 def transactionadd():
     if request.method == "POST":
+        mydb = mysql.connect(host= "us-cdbr-east-03.cleardb.com", user= "b922d4a2de1e6a", password="3ae708bb", database= "heroku_e63d91263a358b9")
         transaction = request.form.get("transaction")
         mname = request.form.get("mname")
         bname = request.form["bname"]
@@ -113,6 +119,7 @@ def transactionadd():
 @app.route('/issue_return', methods=["POST", "GET"])
 def issue_return():
     if request.method=="POST":
+        mydb = mysql.connect(host= "us-cdbr-east-03.cleardb.com", user= "b922d4a2de1e6a", password="3ae708bb", database= "heroku_e63d91263a358b9")
         id = request.form.get("data")
         now = datetime.today()
         mycursor = mydb.cursor()
@@ -130,6 +137,7 @@ def issue_return():
 @app.route('/transaction_delete', methods= ["POST", "GET"])
 def transaction_delete():
     if request.method=="POST":
+        mydb = mysql.connect(host= "us-cdbr-east-03.cleardb.com", user= "b922d4a2de1e6a", password="3ae708bb", database= "heroku_e63d91263a358b9")
         id = request.form.get("string")
         mycursor = mydb.cursor()
         mycursor.execute('''Select mem_id,b_id, status from transactions where trans_id=(%s)''',(id,))
@@ -153,6 +161,8 @@ def transaction_delete():
 
 @app.route('/members', methods=["POST", 'GET'])
 def members():
+    mydb = mysql.connect(host= "us-cdbr-east-03.cleardb.com", user= "b922d4a2de1e6a", password="3ae708bb", database= "heroku_e63d91263a358b9")
+
     mycursor = mydb.cursor()
     mycursor.execute("SELECT * from members")
     data = mycursor.fetchall()
@@ -165,6 +175,7 @@ def members():
 @app.route("/ajax_add", methods=["POST", 'GET'])
 def ajax_add():
     if request.method == 'POST':
+        mydb = mysql.connect(host= "us-cdbr-east-03.cleardb.com", user= "b922d4a2de1e6a", password="3ae708bb", database= "heroku_e63d91263a358b9")
 
         mycursor = mydb.cursor(buffered=True)
 
@@ -190,6 +201,8 @@ def ajax_add():
 def ajax_delete():
     mycursor = mydb.cursor()
     if request.method == 'POST':
+        mydb = mysql.connect(host= "us-cdbr-east-03.cleardb.com", user= "b922d4a2de1e6a", password="3ae708bb", database= "heroku_e63d91263a358b9")
+
         id = request.form.get('string')
         mycursor.execute(''' Select mem_id From transactions t join members m where t.mem_id = m.id and t.mem_id=%s''',(id,))   
         data1 = mycursor.fetchall()
@@ -205,6 +218,8 @@ def ajax_delete():
 @app.route('/ajax_update', methods=["POST", "GET"])
 def ajax_update():
     if request.method == "POST":
+        mydb = mysql.connect(host= "us-cdbr-east-03.cleardb.com", user= "b922d4a2de1e6a", password="3ae708bb", database= "heroku_e63d91263a358b9")
+
         mycursor = mydb.cursor(buffered=True)   
         id1 = request.form.get("id1")
         name1 = request.form.get('textname1')
@@ -217,7 +232,10 @@ def ajax_update():
 
 @app.route('/transactions',methods=["POST", "GET"])
 def transactions():
+    mydb = mysql.connect(host= "us-cdbr-east-03.cleardb.com", user= "b922d4a2de1e6a", password="3ae708bb", database= "heroku_e63d91263a358b9")
+    
     mycursor = mydb.cursor()
+
     mycursor.execute('''select transactions.trans_id, members.name, books.title, transactions.status, transactions.date from ((transactions inner join members on transactions.mem_id= members.id) inner join books on transactions.b_id = books.isbn)''')
     data2 = mycursor.fetchall()
     title = "Transactions"
@@ -226,6 +244,8 @@ def transactions():
 
 @app.route('/reports')
 def reports():
+    mydb = mysql.connect(host= "us-cdbr-east-03.cleardb.com", user= "b922d4a2de1e6a", password="3ae708bb", database= "heroku_e63d91263a358b9")
+
     mycursor = mydb.cursor()
     mycursor.execute('''select b.isbn,b.title, b.stock,count(b.isbn)  from books b join transactions t on b.isbn=t.b_id where t.status = "Rent" group by(b.isbn)''')
     data1 = mycursor.fetchall()

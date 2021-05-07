@@ -3,12 +3,12 @@ import mysql.connector as mysql
 import requests
 import json
 from datetime import datetime
-from config import mysql_host, mysql_user, mysql_password, mysql_database
+# from config import mysql_host, mysql_user, mysql_password, mysql_database
 
 
 app = Flask(__name__)
 app.config['SECRET_KEY'] = '12345'
-mydb = mysql.connect(host= mysql_host, user= mysql_user, password=mysql_password, database= mysql_database)
+mydb = mysql.connect(host= "us-cdbr-east-03.cleardb.com", user= "b922d4a2de1e6a", password="3ae708bb", database= "heroku_e63d91263a358b9")
 
 @app.route('/')
 def helloWorld():

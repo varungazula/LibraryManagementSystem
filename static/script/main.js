@@ -36,17 +36,19 @@ $("#insertbook").click(function() {
 $(".editbook").click(function() {
     $("#modal1").addClass("is-active")
     var id = $(this).attr("class")
-    var z = id.split(" ")
+    var z = id.split(" , ")
     console.log(z)
     $("#isbn").val(z[1])
-    $("#stock").val(z[2])
+    $("#title").val(z[2])
+    $("#stock").val(z[3])
 })
 
 $(".btneditbook").click(function(e) {
     var isbn = $("#isbn").val()
     var stock = $("#stock").val()
         // e.preventDefault()
-    if (stock.length > 0) {
+    console.log(stock.length);
+    if (stock.length > 0 && parseInt(stock) >= 0) {
         e.preventDefault()
 
         Swal.fire({
@@ -71,6 +73,9 @@ $(".btneditbook").click(function(e) {
         })
 
 
+    } else {
+        e.preventDefault()
+        Swal.fire("Please enter a proper value")
     }
 })
 
@@ -97,7 +102,7 @@ $(".addbooks").click(function(e) {
         })
     } else {
         e.preventDefault()
-        window.alert("enter proper values")
+        Swal.fire("Enter proper values")
     }
 })
 
@@ -379,3 +384,7 @@ $(".deletenotification").click(function() {
     $(".notification").remove()
 })
 setTimeout(function() { $(".notification").remove(); }, 5000);
+
+$(".navbar-burger").click(function() {
+    $(".navbar-menu").toggleClass("is-active")
+})

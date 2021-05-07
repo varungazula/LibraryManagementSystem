@@ -33,7 +33,7 @@
                 <th>{{row[5]}}</th>
                 <th>{{row[6]}}</th>
                 <th>
-                    <a class="edit {{row[0]}} {{row[6]}} editbook"><i class="fas fa-edit fa-lg"></i></a>
+                    <a class="edit , {{row[0]}} , {{row[1]}} , {{row[6]}} , editbook"><i class="fas fa-edit fa-lg"></i></a>
 
                     <a class="deletedbook" id="{{row[0]}}" type="submit"><i class="fas fa-trash fa-lg"></i></a>
                 </th>
@@ -71,27 +71,33 @@
 
     </div>
 </div>
-<div class="modal " id="modal1 ">
-    <div class="modal-background "></div>
+<div class="modal" id="modal1">
+    <div class="modal-background"></div>
     <div class="modal-content ">
-        <form action="/books " method="POST ">
+        <form action="/books" method="POST">
             <button class="button is-large modal-close btnclose "></button>
 
             <div class="field ">
-                <label for="isbn " style="color: white; " class="label ">ISBN</label>
+                <label for="isbn" style="color: white; " class="label ">ISBN</label>
                 <div class="control ">
-                    <input id="isbn " class="input " name='isbn' readonly>
+                    <input id="isbn" class="input " name='isbn' readonly>
                 </div>
             </div>
             <div class="field ">
-                <label for="stock " style="color: white; " class="label ">Enter updated stock</label>
+                <label for="title" style="color: white; " class="label ">Title</label>
                 <div class="control ">
-                    <input type="number " id="stock " name='stock' class="input ">
+                    <input id="title" class="input " name='title' readonly>
+                </div>
+            </div>
+            <div class="field ">
+                <label for="stock" style="color: white; " class="label ">Enter updated stock</label>
+                <div class="control ">
+                    <input type="number" id="stock" name='stock' class="input ">
                 </div>
             </div>
             <div class="field is-grouped ">
                 <div class="control ">
-                    <button type="submit " class="button is-link btneditbook " value="Submit ">Submit</button>
+                    <button type="submit" class="button is-link btneditbook" value="Submit ">Submit</button>
                 </div>
                 <div class="control ">
                     <button class="button is-link is-light btnclosedbook ">Cancel</button>

@@ -69,7 +69,7 @@ def books_update():
 def get_data():
     if request.method == "POST":
         mycursor = mydb.cursor()
-        mycursor.execute('''Select isbn,title from books''')
+        mycursor.execute('''Select isbn,title from books where stock>0''')
         data1 = mycursor.fetchall()
         mycursor.execute('''Select id ,name from members''')
         data2 = mycursor.fetchall()
@@ -119,7 +119,7 @@ def issue_return():
         mycursor = mydb.cursor()
         mycursor.execute('''Select mem_id,b_id from transactions where trans_id=(%s)''',(id,))
         data = mycursor.fetchall()
-        mycursor.execute(''' update transactions set status=(%s), date=(%s) where trans_id=(%s)''',("return",now.date(),id,))
+        mycursor.execute(''' update transactions set status=(%s), date=(%s) where trans_id=(%s)''',("Returned",now.date(),id,))
         mydb.commit()
         mycursor.execute('''update books set stock=stock+1 where isbn=(%s)''',(data[0][1],))
         mydb.commit()
@@ -142,7 +142,7 @@ def transaction_delete():
             mydb.commit()
             mycursor.execute('''delete from transactions where trans_id=(%s)''',(id,))
             mydb.commit()
-        elif data[0][2]=="return":
+        elif data[0][2]=="Returned":
             mycursor.execute('''delete from transactions where trans_id=(%s)''',(id,))
             mydb.commit()
     return "he"
@@ -229,8 +229,9 @@ def transactions():
 def reports():
     mydb = mysql.connect(host="localhost", user="root", password="BhavanI@06", database="librarymanagement")
     mycursor = mydb.cursor()
-    mycursor.execute('''select b.isbn,b.title, b.stock,count(b.isbn)  from books b join transactions t on b.isbn=t.b_id group by(b.isbn)''')
+    mycursor.execute('''select b.isbn,b.title, b.stock,count(b.isbn)  from books b join transactions t on b.isbn=t.b_id where t.status = "Rent" group by(b.isbn)''')
     data1 = mycursor.fetchall()
+    print(data1)
     mycursor.execute('''select id, name, email, spent from members where spent>0 ''')
     data2 = mycursor.fetchall()
     title = "Reports"

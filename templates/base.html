@@ -20,13 +20,19 @@
 </head>
 
 <body class="has-navbar-fixed-top">
+
     <nav class="navbar is-danger is-spaced is-fixed-top">
-        <h1 class="is-size-2 has-text-weight-normal"><a href="/" style="color: white;"> {{title}}</a></h1>
-        <div class="navbar-item has-dropdown is-hoverable navbar-end">
-            <a class="navbar-link is-size-4 has-text-weight-normal has-text-right has-text-white   ">
-              More
+        <div class="navbar-brand is-hoverable ">
+            <h1 class="is-size-2 has-text-weight-normal"><a href="/" style="color: white;"> {{title}}</a></h1>
+
+            <a class="navbar-burger">
+                <span></span>
+                <span></span>
+                <span></span>
             </a>
-            <div class="navbar-dropdown">
+        </div>
+        <div class="navbar-menu">
+            <div class="navbar-end">
                 {% for link in links %}
                 <a href="{{link}}" class="navbar-item">
                     {{link|capitalize}}

@@ -246,6 +246,7 @@ $(".btnclosemembers").click(function() {
 $(document).ready(function() {
     var table = $('#example').DataTable({
         lengthChange: false,
+        responsive: true,
         buttons: [{
             extend: 'pdf',
             text: 'Save As PDF',
@@ -261,6 +262,8 @@ $(document).ready(function() {
 
     var table = $('#example1').DataTable({
         lengthChange: false,
+        responsive: true,
+
         buttons: [{
             extend: 'pdf',
             text: 'Save As PDF',

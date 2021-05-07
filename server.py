@@ -3,12 +3,12 @@ import mysql.connector as mysql
 import requests
 import json
 from datetime import datetime
-from config import mysql_password
+from config import mysql_host, mysql_user, mysql_password, mysql_database
 
 
 app = Flask(__name__)
 app.config['SECRET_KEY'] = '12345'
-mydb = mysql.connect(host="localhost", user="root", password=mysql_password, database="librarymanagement")
+mydb = mysql.connect(host= mysql_host, user= mysql_user, password=mysql_password, database= mysql_database)
 
 @app.route('/')
 def helloWorld():
@@ -46,7 +46,6 @@ def books_insert():
 def books_delete():
     if request.method == 'POST':
         id = request.form.get('string')
-        mydb = mysql.connect(host="localhost", user="root", password="BhavanI@06", database="librarymanagement")
         mycursor = mydb.cursor()
         mycursor.execute('''delete from books where isbn = %s''',(id,))
         mydb.commit()
@@ -227,7 +226,6 @@ def transactions():
 
 @app.route('/reports')
 def reports():
-    mydb = mysql.connect(host="localhost", user="root", password="BhavanI@06", database="librarymanagement")
     mycursor = mydb.cursor()
     mycursor.execute('''select b.isbn,b.title, b.stock,count(b.isbn)  from books b join transactions t on b.isbn=t.b_id where t.status = "Rent" group by(b.isbn)''')
     data1 = mycursor.fetchall()

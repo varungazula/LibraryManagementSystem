@@ -1,4 +1,5 @@
-I have created a simple Library management system which is user friendly and includes all basic features
+I have created a simple Library management system which is user friendly and includes all basic features.
+The app has been hosted on Heroku and can be accessed via https://mylibrarymanagementsystem.herokuapp.com/.
 
 User can view the list of books available in the library along with the default stock of 50 which can be edited at any time.
 It displays the book title, author, publisher, pages of the book, avg rating and stock along with actions to edit or delete books. 
@@ -28,6 +29,7 @@ ScreenShots
 <img src = "Images/Books.JPG">
 <img src = "Images/InsertBooks.JPG">
 <img src = "Images/Members.JPG">
+<img src = "Images/Heroku.JPG">
 <img src = "Images/AddNewMember.JPG">
 <img src = "Images/deletemember.JPG">
 <img src = "Images/NewTransaction.JPG">

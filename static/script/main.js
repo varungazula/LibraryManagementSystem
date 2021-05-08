@@ -82,7 +82,7 @@ $(".btneditbook").click(function(e) {
 $(".addbooks").click(function(e) {
     var starting = $("#starting").val()
     m = $.isNumeric(starting)
-    if (m == true && starting.length > 0 && starting < 201) {
+    if (m == true && starting.length > 0 && parseInt(starting) > 0 && starting < 201) {
         e.preventDefault()
         Swal.fire({
             title: 'Do you want to insert books?',
